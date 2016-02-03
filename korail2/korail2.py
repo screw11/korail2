@@ -611,6 +611,7 @@ When you want change ID using existing object,
         last_time = time
         for i in range(15):  # 최대 15번 호출
             try:
+                print "searching time " + last_time
                 trains = self.search_train(dep, arr, date, last_time, train_type, passengers, True)
                 all_trains.extend(trains)
                 # 마지막 열차시간에 1분 더해서 계속 검색.
@@ -623,7 +624,8 @@ When you want change ID using existing object,
             all_trains = filter(lambda x: x.has_seat(), all_trains)
 
         if len(all_trains) == 0:
-            raise NoResultsError()
+            print "No Train at all"
+            #raise NoResultsError()
 
         return all_trains
 
@@ -765,7 +767,8 @@ There are 3 types of Passengers now, AdultPassenger, ChildPassenger and SeniorPa
                 trains = filter(lambda x: x.has_seat(), trains)
 
             if len(trains) == 0:
-                raise NoResultsError()
+                print "No Train"
+            #    raise NoResultsError()
 
             return trains
 
